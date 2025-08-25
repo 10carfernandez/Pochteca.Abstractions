@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+NuGet.Config
+
 # User-specific files
 *.rsuser
 *.suo
@@ -416,3 +418,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Other
+*.bak
