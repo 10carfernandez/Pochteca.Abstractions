@@ -1,4 +1,4 @@
-﻿using Pochteca;
+using Pochteca;
 
 namespace Tests.Fakes;
 
@@ -18,21 +18,21 @@ internal sealed class SimplePrefixUnitRuleProvider : IUnitRuleProvider
         UnitRule? best = null;
         int bestLen = -1;
 
-        foreach (var r in _rules)
+        foreach (var rule in _rules)
         {
-            if (IsPrefix(key, r.EndpointPrefix) && r.EndpointPrefix.Length > bestLen)
+            if (IsPrefix(key, rule.EndpointPrefix) && rule.EndpointPrefix.Length > bestLen)
             {
-                best = r; bestLen = r.EndpointPrefix.Length;
+                best = rule; bestLen = rule.EndpointPrefix.Length;
             }
         }
 
         if (best is not null) return best;
 
-        foreach (var r in _rules)
+        foreach (var rule in _rules)
         {
-            if (IsPrefix(path, r.EndpointPrefix) && r.EndpointPrefix.Length > bestLen)
+            if (IsPrefix(path, rule.EndpointPrefix) && rule.EndpointPrefix.Length > bestLen)
             {
-                best = r; bestLen = r.EndpointPrefix.Length;
+                best = rule; bestLen = rule.EndpointPrefix.Length;
             }
         }
 

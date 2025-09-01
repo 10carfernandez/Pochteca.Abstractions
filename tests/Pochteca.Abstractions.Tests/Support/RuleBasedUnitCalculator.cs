@@ -1,4 +1,4 @@
-﻿using Pochteca;
+using Pochteca;
 
 namespace Tests.Fakes;
 
@@ -12,17 +12,17 @@ internal sealed class RuleBasedUnitCalculator : IUnitCalculator
     {
         var rule = _provider.ResolveRule(request);
         if (rule is null)
-            return new UnitsResult(0m, "No matching rule");
+            return new UnitsResult(0m, "no_match", null);
 
         decimal units = rule.BaseUnits;
 
         if (rule.PerItemUnit is { } perItem && !string.IsNullOrWhiteSpace(rule.ItemKey)
-            && request.Items.TryGetValue(rule.ItemKey!, out var raw) && TryToDecimal(raw, out var qty))
+            && request.Items.TryGetValue(rule.ItemKey!, out var raw) && TryToDecimal(raw, out var quantity))
         {
-            units += perItem * qty;
+            units += perItem * quantity;
         }
 
-        return new UnitsResult(units);
+        return new UnitsResult(units, $"rule:{rule.Id}", rule.Id);
 
         static bool TryToDecimal(object? value, out decimal result)
         {

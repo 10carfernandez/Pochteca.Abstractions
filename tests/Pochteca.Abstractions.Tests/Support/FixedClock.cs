@@ -1,4 +1,4 @@
-﻿using Pochteca;
+using Pochteca;
 
 namespace Tests.Fakes;
 
